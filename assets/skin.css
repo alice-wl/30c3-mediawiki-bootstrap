@@ -1,0 +1,17 @@
+body {
+  background:url("background-image.jpg") no-repeat top center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.navbar .brand {
+    float: left;
+    width: 100%;
+    background: #008080;
+    height: 230px;
+    background:url("logo.png") no-repeat top center;
+}
+/* jquery calendar fix */
+.container.fc {
+    width: 677px;
+    margin:0 ; padding: 0;
+}
