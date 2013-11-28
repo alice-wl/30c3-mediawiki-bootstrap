@@ -27,14 +27,17 @@
 	$skinDirParts = explode( DIRECTORY_SEPARATOR, dirname( __FILE__ ) );
 	$skinDir = array_pop( $skinDirParts );
 	$skinAssets = $skinDir . '/assets/';
-	$bootstrapAssets = $skinDir . '/bootstrap/docs/assets/';
+	$bootstrapAssets = $skinDir . '/bootstrap/dist/';
+
 	$wgResourceModules['skins.bootstrap'] = array(
 		'styles' => array(
 			$bootstrapAssets . 'css/bootstrap.css',
-			$bootstrapAssets . 'css/bootstrap-responsive.css',
-			$skinAssets . 'font-awesome.css',
+			$bootstrapAssets . 'css/bootstrap-theme.css',
+			$skinAssets . 'skin.css',
+			#$bootstrapAssets . 'css/bootstrap-responsive.css',
 			$skinAssets . 'mediawiki.css',
-			$skinAssets . 'site.css'
+			$skinAssets . 'font-awesome.css',
+			$skinAssets . 'site.css',
 		),
 		'scripts' => array(
 			$bootstrapAssets . 'js/bootstrap.js',
@@ -55,6 +58,10 @@
 	
 	$sgNavbarOptions['page'] = 'MediaWiki:bootstrap-navbar';
 	$sgNavbarOptions['dropdown'] = true; 
+
+	$sgTopbarOptions['page'] = 'MediaWiki:bootstrap-topbar';
+	$sgTopbarOptions['type'] = 'list'; # tabs, pills, list
+	$sgTopbarOptions['dropdown'] = true;
 
 	$sgSidebarOptions['page'] = 'MediaWiki:bootstrap-sidebar';
 	$sgSidebarOptions['type'] = 'pills'; # tabs, pills, list

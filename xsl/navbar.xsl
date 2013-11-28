@@ -8,27 +8,26 @@
     
     <!-- add nav class to root ul element -->
     <xsl:template match="/">
-        <nav class="navbar">
+        <nav class="navbar navbar-tools">
             <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="&collapse-data-toggle;" data-target=".&nav-collapse-class;">
-                        <span class="&icon-bar-class;"></span>
-                        <span class="&icon-bar-class;"></span>
-                        <span class="&icon-bar-class;"></span>
-                    </a>
-                    
-                    <a class="brand"></a>
-                    
-                    <div id="page" class="&site-tool-group;"></div>
-                    
-                    <div id="user" class="&site-tool-group;"></div>
-                    
-                    <div class="&nav-collapse-class;">
-                        <xsl:apply-templates select="ul[1]" mode="topLevel">
-                            <xsl:with-param name="class">&navbar-nav;</xsl:with-param>
-                        </xsl:apply-templates>
-                    </div>
-                </div>
+		<a class="btn btn-navbar" data-toggle="&collapse-data-toggle;" data-target=".&nav-collapse-class;">
+		    <span class="&icon-bar-class;"></span>
+		    <span class="&icon-bar-class;"></span>
+		    <span class="&icon-bar-class;"></span>
+		</a>
+		
+		<div id="pagetools" class="&site-tool-group;"></div>
+
+		<div id="usertools" class="&site-tool-group;"></div>
+
+		<a class="brand"></a>
+		
+		
+		<div class="&nav-collapse-class;">
+		    <xsl:apply-templates select="ul[1]" mode="topLevel">
+			<xsl:with-param name="class">&navbar-nav;</xsl:with-param>
+		    </xsl:apply-templates>
+		</div>
             </div>
         </nav>
     </xsl:template>

@@ -109,6 +109,26 @@
 
 	/**
 	* 
+	* Print a topbar.
+	*
+	* @ingroup Skins
+	*/
+	public function renderTopbar() {
+		global $sgTopbarOptions;
+		$type = 'nav-' . $sgTopbarOptions['type'];
+		// parse and transform
+		$sidebar = $this->parseAndTransform( $sgTopbarOptions['page'], DIRNAME(__FILE__) .'/xsl/topbar.xsl', array('nav-type'=>$type)); 
+
+		// output as HTML
+		$output = DOMDocument::loadXML( $sidebar );
+		if( $output ) {
+			// output as HTML
+			echo $output->saveHTML();
+		}
+	}
+
+	/**
+	* 
 	* Print the sidebar.
 	*
 	* @ingroup Skins
@@ -160,7 +180,7 @@
 			$dropdownBtn->appendChild( $dropdownIcon );	
 
 			// setup user tools
-			$userTool = $finder->query('//div[@id="user"]')->item(0);
+			$userTool = $finder->query('//div[@id="usertools"]')->item(0);
 			if( $userTool ) {
 				// get user links
 				$userLinks = $this->skin->getPersonalTools();
@@ -194,7 +214,7 @@
 			}
 
 			// update page tools
-			$pageTool = $finder->query('//div[@id="page"]')->item(0);
+			$pageTool = $finder->query('//div[@id="pagetools"]')->item(0);
 			if( $pageTool ) {
 				// create the button
 				$pageBtn = $dropdownBtn->cloneNode( true );
