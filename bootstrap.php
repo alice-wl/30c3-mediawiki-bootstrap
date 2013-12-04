@@ -32,9 +32,7 @@
 	$wgResourceModules['skins.bootstrap'] = array(
 		'styles' => array(
 			$bootstrapAssets . 'css/bootstrap.css',
-			$bootstrapAssets . 'css/bootstrap-theme.css',
 			$skinAssets . 'skin.css',
-			#$bootstrapAssets . 'css/bootstrap-responsive.css',
 			$skinAssets . 'mediawiki.css',
 			$skinAssets . 'font-awesome.css',
 			$skinAssets . 'site.css',
