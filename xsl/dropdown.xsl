@@ -26,13 +26,14 @@
     <!-- li templates -->
     <xsl:template match="li[child::ul]">
         <xsl:copy>
-            <xsl:attribute name="class">&dropdown-class;</xsl:attribute>
-            <a class="&dropdown-toggle-class;" data-toggle="&dropdown-data-toggle;" href="#">
-                <!-- content -->
-                <xsl:copy-of select="*[not(self::ul)] | text()"/>
-                
-                <i class="&icon-caret-class;"></i>
-            </a>
+            <xsl:attribute name="class">&dropdown-class; pull-right</xsl:attribute>
+            <!-- <a class="btn &dropdown-toggle-class; btn-info" data-toggle="&dropdown-data-toggle;" href="#"> -->
+            <!-- content -->
+            <!-- <xsl:copy-of select="*[not(self::ul)] | text()"/> -->
+            <button class="btn &dropdown-toggle-class; btn-info" data-toggle="&dropdown-data-toggle;">
+                <icon class="icon-th icon-white"> </icon>
+                <i class="&icon-caret-class;"> </i>
+            </button>
             <xsl:apply-templates select="ul" mode="dropdown"/>
         </xsl:copy>
     </xsl:template>

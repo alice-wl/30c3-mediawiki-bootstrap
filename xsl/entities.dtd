@@ -24,7 +24,7 @@
 <!ENTITY site-tool-group "pull-right btn-group">
 
 <!-- topbar -->
-<!ENTITY nav-bar-class "navbar-nav">
+<!ENTITY nav-bar-class "nav-justify navbar-nav">
 <!ENTITY nav-topbar-class "navbar-collapse collapse navbar-responsive-collapse">
 <!ENTITY nav-topbar-collapse "nav-topbar-collapse">
 <!ENTITY topbar-nav "&nav-class; &nav-bar-class;">

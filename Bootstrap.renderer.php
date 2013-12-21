@@ -33,8 +33,7 @@
 	*/
 	public function renderCatLinks() {
 		$result = false;
-
-		if( $this->skin->data['catlinks'] ) {
+		if( trim( strip_tags( $this->skin->data['catlinks'] ))) {
 			$doc = DOMDocument::loadXML( 
 				Xml::openElement( 'footer' ) .
 				$this->skin->data[ 'catlinks' ] .
@@ -69,27 +68,11 @@
 		$output = new DOMDocument();
 		$output->loadXML( $footer );
 
-		// add footer links 
-		foreach( $this->skin->getFooterLinks() as $category => $links ) {	
-			$footerLinks = $output->createElement('ul');
-			$footerLinks->setAttribute('class', 'horizontal');
-			foreach( $links as $link ) {
-				$footerLink = $output->createDocumentFragment();
-				$footerLink->appendXML(
-					"<li>" .
-					$this->skin->data[$link] .
-					"</li>"
-				);
-				$footerLinks->appendChild( $footerLink );	
-			}
-		}
-		$output->appendChild( $footerLinks );
-
 		// add footer icons
 		foreach( $this->skin->getFooterIcons("icononly") 
 			as $blockName => $icons ) {
 			$footerIcons = $output->createElement('ul');
-			$footerIcons->setAttribute('class', 'horizontal pull-right');
+			$footerIcons->setAttribute('class', 'list-inline pull-right');
 			foreach( $icons as $icon ) {
 				$footerIcon = $output->createDocumentFragment();
 				$footerIcon->appendXML(
@@ -191,7 +174,7 @@
 				$userTxt = new DOMText( $userLink['text'] . ' ' );
 				$userBtn = $output->createElement('a');	
 				$userBtn->setAttribute('href', $userLink['href']);
-				$userBtn->setAttribute('class', 'btn btn-warning');
+				$userBtn->setAttribute('class', 'btn btn-info');
 				$userBtn->appendChild( $userTxt );
 
 				$userIcon = $output->createElement('icon');
@@ -202,7 +185,7 @@
 			
 				// create user dropdown	
 				$userCaret = $dropdownBtn->cloneNode( true );
-				$userCaret->setAttribute('class', $dropdownBtn->getAttribute('class') . ' btn-warning');
+				$userCaret->setAttribute('class', $dropdownBtn->getAttribute('class') . ' btn-info');
 
 				// create the dropdown links
 				$userDropdown = $this->renderDataLinks( $userLinks, 'dropdown-menu' );

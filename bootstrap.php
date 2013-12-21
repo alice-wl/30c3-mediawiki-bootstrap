@@ -12,10 +12,10 @@
 
 	$wgExtensionCredits['skin'][] = array(
 		'path' => __FILE__,
-		'name' => 'Bootstrap',
-		'url' => 'http://www.github.com/mtyeh411/bootstrap-mediawiki',
-		'author' => '[http://www.github.com/mtyeh411 Matt Yeh]',
-		'descriptionmsg' => 'Bootstrap skin',
+		'name' => 'events.ccc.de',
+		'url' => '',
+		'author' => '',
+		'descriptionmsg' => 'Chaos Communication Congress - MediawikiSkin',
 	);
 
 	$wgValidSkinNames['bootstrap'] = 'Bootstrap';
@@ -27,7 +27,7 @@
 	$skinDirParts = explode( DIRECTORY_SEPARATOR, dirname( __FILE__ ) );
 	$skinDir = array_pop( $skinDirParts );
 	$skinAssets = $skinDir . '/assets/';
-	$bootstrapAssets = $skinDir . '/bootstrap/dist/';
+	$bootstrapAssets = $skinDir . '/';
 
 	$wgResourceModules['skins.bootstrap'] = array(
 		'styles' => array(

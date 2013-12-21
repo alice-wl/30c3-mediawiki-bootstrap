@@ -49,24 +49,15 @@
 
                     $this->html( 'headelement' ); ?>
                     <?php $renderer->renderNavbar(); ?>
-                    <div id="page" class="container container-fluid center-block">
-                    <?php if($this->data['sitenotice']) { ?>
-                        <header class="row-fluid">
-                            <div id="siteNotice" class="alert alert-info span12">
-                                <button class="close" data-dismiss="alert">x</button>
-                                <?php $this->html('sitenotice') ?>
-                            </div>
-                        </header>
-                    <?php } ?>
+                    <div id="page" class="container center-block">
 
-                    <div class="row-fluid">
+                    <?php $TopbarArticle = Article::newFromTitle(
+                        Title::newFromText( $sgTopbarOptions['page'] ), 
+                        $this->data['skin']->getContext( ));
+                    if( $TopbarArticle->getContent() != '' ) { ?>
+                          <?php $renderer->renderTopbar(); } ?>
 
-                        <?php $TopbarArticle = Article::newFromTitle(
-                            Title::newFromText( $sgTopbarOptions['page'] ), 
-                            $this->data['skin']->getContext( ));
-                        if( $TopbarArticle->getContent() != '' ) { ?>
-                              <?php $renderer->renderTopbar(); } ?>
-
+                    <div class="row">
                         <?php $sidebarArticle = Article::newFromTitle(
                             Title::newFromText( $sgSidebarOptions['page'] ), 
                             $this->data['skin']->getContext( ));
@@ -74,19 +65,22 @@
                               <?php $renderer->renderSidebar(); ?>
                         <?php } ?>
 
-                        <article id="content" class="row" >
-                            <?php 
+                        <article id="content">
+                            <header class="pagestart">
+                              <?php 
                               $body = $this->data['bodycontent']; 
                               $matches = array( );
 
                               switch( $this->data['title'] ) {
-                                case 'Main Page':
+                              case 'Main Page': ?>
+                                  <div class="page-header">
+                                  <h1>30C3: 30th Chaos Communication Congress</div>
+                                  <?php 
                                   break;
                                 default: ?>
-                                  <!--<div class="page-header">
+                                  <div class="page-header">
                                   <h1> <?php $this->html( 'title' ); ?> </h1>
-                                  </div> -->
-                                
+                                  </div>
                                   <?php
                                   break;
                               }
@@ -96,30 +90,33 @@
                               if( preg_match('/'.$st.'(.*?)'.$nd.'/s', $body, $matches )) {
                                   $body = preg_replace('/'.$st.'.*?'.$nd.'/s', '', $body );
                                   ?>
-                                  <div id="toc" class="col-md-4">
-                                    <div id="toctitle"><h2>Contents</h2></div><? echo $matches[1]; ?> 
+                                  <div id="toc">
+                                    <div id="toctitle"><h2>Contents</h2></div><?php echo $matches[1]; ?> 
                                   </div>
                                   <?php
                               }
-                              $st = '<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>';
-                              $nd = '<p></div>';
-                              if( preg_match('/'.$st.'(.*?)'.$nd.'/s', $body, $matches )) {
-                                  $body = preg_replace('/'.$st.'.*?'.$nd.'/s', '', $body );
-                                  ?>
-                                    <? echo $matches[1]; ?> 
-                                  </div>
-                                  <?php
-                              }
-                              echo $body;
-                            ?>
+                              $body = preg_replace('/<div id="mw-content-text" .*? class="/', '\\0row ', $body, 1 );
+                              $body = preg_replace('/(<div id="mw-content-text")>/', '\\1class="row">', $body, 1 );
+
+                              if($this->data['sitenotice']) { ?>
+                                    <div id="siteNotice" class="alert alert-info span12">
+                                        <button class="close" data-dismiss="alert">x</button>
+                                        <?php $this->html('sitenotice') ?>
+                                    </div>
+                              <?php } ?>
+                            </header>
+
+                            <?php echo $body; ?>
                             <?php $renderer->renderCatLinks(); ?>
                             <?php $this->html( 'dataAfterContent' ); ?>
                         </article>
                     </div>
 
+                    <footer class="pageend">
                     <?php $renderer->renderFooter(); ?>
+                    </footer>
 
-                    </div> <!-- #page .container-fluid -->
+                    </div> <!-- #page .container -->
 
                     <?php $this->printTrail(); ?>
 
